@@ -1,1 +1,1 @@
-# magikcraft-packages
+# play-app-intellisense
