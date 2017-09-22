@@ -1,13 +1,13 @@
 type TextComponent = any;
 
-declare interface IMagikCraftAPI {
+interface IMagikCraftAPI {
     getMappedItem: () => string;
     setMappedItem: (key: string, value: string) => void;
     getSpellsList: (sender: BukkitPlayer, senderName: string) => string[];
 }
 
 declare const MagikCraftAPI: IMagikCraftAPI;
-export interface ICanon {
+interface ICanon {
     _darkmagik_: any;
     console: any;
     constant: any;
