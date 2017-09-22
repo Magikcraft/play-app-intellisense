@@ -668,9 +668,3 @@ declare const magikcraft: {io: magik};
 declare namespace mock {
 
 }
-
-// import * as _mock from '../lib/mock';
-// declare const mock: typeof _mock;
-
-// export { };
-//
