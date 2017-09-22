@@ -1,9 +1,3 @@
-// Type definitions for magikcraft.io 0.9
-// Project: https://github.com/Magikcraft/magikcraft.io
-// Definitions by: Josh Wulf <josh@magikcraft.io>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// TypeScript Version: 2.2
-
 type TextComponent = any;
 
 declare interface IMagikCraftAPI {
@@ -665,6 +659,3 @@ declare namespace eventbus {
 
 declare const magikcraft: {io: magik};
 
-declare namespace mock {
-
-}
