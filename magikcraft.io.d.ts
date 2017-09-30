@@ -198,7 +198,7 @@ interface magik {
      * @type {EventEmitter.EventEmitter}
      * @memberof magik
      */
-    Events: EventEmitter;
+    Events: EventEmitter<EventKey>;
     /**
      * Return a Java class reference to an org.bukkit.* class.
      *
