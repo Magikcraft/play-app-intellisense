@@ -192,7 +192,13 @@ declare namespace EventEmitter {
     }
 }
 interface magik {
-
+    /**
+     *
+     * Use the Node.js Event Emitter pattern to register event handlers
+     *
+     * @type {EventEmitter.EventEmitter}
+     * @memberof magik
+     */
     Events: EventEmitter.EventEmitter;
     /**
      * Return a Java class reference to an org.bukkit.* class.
