@@ -226,11 +226,7 @@ interface magik {
 
 
     /**
-<<<<<<< HEAD
-     * Wait a number of seconds, then do the task
-=======
      * Wait for a number of seconds, then do the task.
->>>>>>> release/1.3.1
      *
      * @param {number} delayInSeconds
      * @param {() => void} task
