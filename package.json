@@ -1,0 +1,27 @@
+{
+  "name": "play-app-intellisense",
+  "version": "1.3.1",
+  "description": "Intellisense for the Magikcraft API in Play App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Magikcraft/play-app-intellisense.git"
+  },
+  "keywords": [
+    "magikcraft",
+    "minecraft",
+    "typescript",
+    "coding",
+    "kids",
+    "education"
+  ],
+  "author": "Magikcraft.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Magikcraft/play-app-intellisense/issues"
+  },
+  "homepage": "https://github.com/Magikcraft/play-app-intellisense#readme"
+}
