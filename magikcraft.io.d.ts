@@ -224,6 +224,17 @@ interface magik {
      */
     setTimeout(callback: () => void, delay: number): number;
 
+
+    /**
+     * Wait a number of seconds, then do the task
+     *
+     * @param {number} delayInSeconds
+     * @param {() => void} task
+     * @returns {number}
+     * @memberof magik
+     */
+    doAfter(delayInSeconds: number, task: () => void): number;
+
     /**
      * Execute the callback function multiple times, after the delay in milliseconds.
      * Returns a handle that can be used to clear the interval timer.
