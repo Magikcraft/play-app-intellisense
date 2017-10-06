@@ -190,6 +190,13 @@ declare class EventEmitter<E = EventKey> {
     setOnceReturnValue(value: any): this;
 }
 
+interface Memento {
+    (value): void;
+    (key, value): void;
+    setItem(key, value): void;
+    getItem(key): any;
+}
+                           
 interface magik {
     /**
      *
@@ -458,7 +465,6 @@ interface magik {
      * const magik = magikcraft.io;
      *
      * function remember() {
-     *      const thing = magik.exmemento();
      *      magik.dixit(thing.toString());
      * }
      * ```
@@ -597,7 +603,7 @@ interface magik {
      * }
      */
 
-    memento(thing: any): void;
+    memento: Memento;
 
     /**
      * Shoot a fireball.
