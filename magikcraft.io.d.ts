@@ -191,10 +191,10 @@ declare class EventEmitter<E = EventKey> {
 }
 
 interface Memento {
-    (value): void;
-    (key, value): void;
-    setItem(key, value): void;
-    getItem(key): any;
+    (value: any): void;
+    (key: string|number, value: any): void;
+    setItem(key: string|number, value: any): void;
+    getItem(key: string|number): any;
 }
                            
 interface magik {
