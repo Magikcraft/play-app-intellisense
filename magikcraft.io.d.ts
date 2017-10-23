@@ -76,7 +76,6 @@ interface BukkitPlayer {
     getLineOfSight(blocks: BukkitMaterial[], maxDistance: number): BukkitBlock[];
     launchProjectile(projectileType: any): void;
     isSneaking(): boolean;
-    getInventory(): any;
 }
 
 type BukkitPlugin = any;
