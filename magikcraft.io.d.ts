@@ -84,6 +84,7 @@ interface vector {
 
 interface BukkitWorld {
     getBlockAt(location: BukkitLocation): BukkitBlock;
+    getBlockAt(x: number, y: number, z: number): BukkitBlock;
     strikeLightning(location: BukkitLocation): void;
     spawnEntity(location: BukkitLocation, entityType: any): void;
     createExplosion(location: BukkitLocation, times: number): void;
