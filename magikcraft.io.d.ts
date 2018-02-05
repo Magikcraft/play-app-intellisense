@@ -765,5 +765,3 @@ declare namespace eventbus {
 }
 
 declare const magikcraft: {io: magik};
-
-declare module 'events'

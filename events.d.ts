@@ -26,7 +26,7 @@ The crucial difference is that the events module now has functions for each of t
 
 ***/
 
-declare module events {
+declare module 'events' {
 	export const blockBreak: (callback: any, priority: any) => any
 	/*********************
 ### events.blockBurn()
