@@ -232,7 +232,7 @@ interface Memento {
     setItem(key: string|number, value: any): void;
     getItem(key: string|number): any;
 }
-                           
+
 interface magik {
     /**
      *
@@ -766,3 +766,4 @@ declare namespace eventbus {
 
 declare const magikcraft: {io: magik};
 
+declare module 'events'
