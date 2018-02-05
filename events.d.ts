@@ -27,7 +27,7 @@ The crucial difference is that the events module now has functions for each of t
 ***/
 
 declare module 'events' {
-	export const blockBreak: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockBreak: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockBurn()
 
@@ -38,7 +38,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockBurn: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockBurn: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockCanBuild()
 
@@ -49,7 +49,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockCanBuild: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockCanBuild: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockDamage()
 
@@ -60,7 +60,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockDamage: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockDamage: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockDispense()
 
@@ -71,7 +71,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockDispense: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockDispense: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockExp()
 
@@ -82,7 +82,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockExp: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockExp: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockExplode()
 
@@ -93,7 +93,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockExplode: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockExplode: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockFade()
 
@@ -104,7 +104,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockFade: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockFade: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockForm()
 
@@ -115,7 +115,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockForm: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockForm: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockFromTo()
 
@@ -126,7 +126,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockFromTo: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockFromTo: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockGrow()
 
@@ -137,7 +137,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockGrow: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockGrow: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockIgnite()
 
@@ -148,7 +148,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockIgnite: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockIgnite: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockMultiPlace()
 
@@ -159,7 +159,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockMultiPlace: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockMultiPlace: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockPhysics()
 
@@ -170,7 +170,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockPhysics: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockPhysics: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockPistonExtend()
 
@@ -183,7 +183,7 @@ declare module 'events' {
 ***/
 	export const blockPistonExtend: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.blockPistonRetract()
@@ -197,7 +197,7 @@ declare module 'events' {
 ***/
 	export const blockPistonRetract: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.blockPlace()
@@ -209,7 +209,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockPlace: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockPlace: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockRedstone()
 
@@ -220,7 +220,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockRedstone: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockRedstone: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockSpread()
 
@@ -231,7 +231,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const blockSpread: (callback: (event: any) => boolean | void, priority: any) => any
+	export const blockSpread: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.cauldronLevelChange()
 
@@ -244,7 +244,7 @@ declare module 'events' {
 ***/
 	export const cauldronLevelChange: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityBlockForm()
@@ -256,7 +256,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityBlockForm: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityBlockForm: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.leavesDecay()
 
@@ -267,7 +267,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const leavesDecay: (callback: (event: any) => boolean | void, priority: any) => any
+	export const leavesDecay: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.notePlay()
 
@@ -278,7 +278,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const notePlay: (callback: (event: any) => boolean | void, priority: any) => any
+	export const notePlay: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.signChange()
 
@@ -289,7 +289,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const signChange: (callback: (event: any) => boolean | void, priority: any) => any
+	export const signChange: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.enchantItem()
 
@@ -300,7 +300,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const enchantItem: (callback: (event: any) => boolean | void, priority: any) => any
+	export const enchantItem: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.prepareItemEnchant()
 
@@ -313,7 +313,7 @@ declare module 'events' {
 ***/
 	export const prepareItemEnchant: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.areaEffectCloudApply()
@@ -327,7 +327,7 @@ declare module 'events' {
 ***/
 	export const areaEffectCloudApply: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.creatureSpawn()
@@ -339,7 +339,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const creatureSpawn: (callback: (event: any) => boolean | void, priority: any) => any
+	export const creatureSpawn: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.creeperPower()
 
@@ -350,7 +350,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const creeperPower: (callback: (event: any) => boolean | void, priority: any) => any
+	export const creeperPower: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.enderDragonChangePhase()
 
@@ -363,7 +363,7 @@ declare module 'events' {
 ***/
 	export const enderDragonChangePhase: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityAirChange()
@@ -375,7 +375,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityAirChange: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityAirChange: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityBreakDoor()
 
@@ -386,7 +386,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityBreakDoor: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityBreakDoor: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityBreed()
 
@@ -397,7 +397,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityBreed: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityBreed: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityChangeBlock()
 
@@ -410,7 +410,7 @@ declare module 'events' {
 ***/
 	export const entityChangeBlock: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityCombustByBlock()
@@ -424,7 +424,7 @@ declare module 'events' {
 ***/
 	export const entityCombustByBlock: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityCombustByEntity()
@@ -438,7 +438,7 @@ declare module 'events' {
 ***/
 	export const entityCombustByEntity: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityCombust()
@@ -450,7 +450,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityCombust: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityCombust: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityCreatePortal()
 
@@ -463,7 +463,7 @@ declare module 'events' {
 ***/
 	export const entityCreatePortal: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityDamageByBlock()
@@ -477,7 +477,7 @@ declare module 'events' {
 ***/
 	export const entityDamageByBlock: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityDamageByEntity()
@@ -491,7 +491,7 @@ declare module 'events' {
 ***/
 	export const entityDamageByEntity: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityDamage()
@@ -503,7 +503,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityDamage: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityDamage: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityDeath()
 
@@ -514,7 +514,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityDeath: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityDeath: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityExplode()
 
@@ -525,7 +525,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityExplode: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityExplode: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityInteract()
 
@@ -536,7 +536,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityInteract: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityInteract: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityPickupItem()
 
@@ -547,7 +547,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityPickupItem: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityPickupItem: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityPortalEnter()
 
@@ -560,7 +560,7 @@ declare module 'events' {
 ***/
 	export const entityPortalEnter: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityPortal()
@@ -572,7 +572,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityPortal: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityPortal: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityPortalExit()
 
@@ -583,7 +583,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityPortalExit: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityPortalExit: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityRegainHealth()
 
@@ -596,7 +596,7 @@ declare module 'events' {
 ***/
 	export const entityRegainHealth: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityResurrect()
@@ -608,7 +608,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityResurrect: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityResurrect: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityShootBow()
 
@@ -619,7 +619,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityShootBow: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityShootBow: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entitySpawn()
 
@@ -630,7 +630,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entitySpawn: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entitySpawn: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityTame()
 
@@ -641,7 +641,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityTame: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityTame: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityTarget()
 
@@ -652,7 +652,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityTarget: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityTarget: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityTargetLivingEntity()
 
@@ -665,7 +665,7 @@ declare module 'events' {
 ***/
 	export const entityTargetLivingEntity: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityTeleport()
@@ -677,7 +677,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityTeleport: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityTeleport: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.entityToggleGlide()
 
@@ -690,7 +690,7 @@ declare module 'events' {
 ***/
 	export const entityToggleGlide: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.entityUnleash()
@@ -702,7 +702,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const entityUnleash: (callback: (event: any) => boolean | void, priority: any) => any
+	export const entityUnleash: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.expBottle()
 
@@ -713,7 +713,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const expBottle: (callback: (event: any) => boolean | void, priority: any) => any
+	export const expBottle: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.explosionPrime()
 
@@ -724,7 +724,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const explosionPrime: (callback: (event: any) => boolean | void, priority: any) => any
+	export const explosionPrime: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.fireworkExplode()
 
@@ -735,7 +735,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const fireworkExplode: (callback: (event: any) => boolean | void, priority: any) => any
+	export const fireworkExplode: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.foodLevelChange()
 
@@ -746,7 +746,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const foodLevelChange: (callback: (event: any) => boolean | void, priority: any) => any
+	export const foodLevelChange: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.horseJump()
 
@@ -757,7 +757,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const horseJump: (callback: (event: any) => boolean | void, priority: any) => any
+	export const horseJump: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.itemDespawn()
 
@@ -768,7 +768,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const itemDespawn: (callback: (event: any) => boolean | void, priority: any) => any
+	export const itemDespawn: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.itemMerge()
 
@@ -779,7 +779,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const itemMerge: (callback: (event: any) => boolean | void, priority: any) => any
+	export const itemMerge: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.itemSpawn()
 
@@ -790,7 +790,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const itemSpawn: (callback: (event: any) => boolean | void, priority: any) => any
+	export const itemSpawn: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.lingeringPotionSplash()
 
@@ -803,7 +803,7 @@ declare module 'events' {
 ***/
 	export const lingeringPotionSplash: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.pigZap()
@@ -815,7 +815,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const pigZap: (callback: (event: any) => boolean | void, priority: any) => any
+	export const pigZap: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerDeath()
 
@@ -826,7 +826,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerDeath: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerDeath: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerLeashEntity()
 
@@ -839,7 +839,7 @@ declare module 'events' {
 ***/
 	export const playerLeashEntity: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.potionSplash()
@@ -851,7 +851,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const potionSplash: (callback: (event: any) => boolean | void, priority: any) => any
+	export const potionSplash: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.projectileHit()
 
@@ -862,7 +862,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const projectileHit: (callback: (event: any) => boolean | void, priority: any) => any
+	export const projectileHit: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.projectileLaunch()
 
@@ -873,7 +873,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const projectileLaunch: (callback: (event: any) => boolean | void, priority: any) => any
+	export const projectileLaunch: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.sheepDyeWool()
 
@@ -884,7 +884,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const sheepDyeWool: (callback: (event: any) => boolean | void, priority: any) => any
+	export const sheepDyeWool: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.sheepRegrowWool()
 
@@ -895,7 +895,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const sheepRegrowWool: (callback: (event: any) => boolean | void, priority: any) => any
+	export const sheepRegrowWool: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.slimeSplit()
 
@@ -906,7 +906,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const slimeSplit: (callback: (event: any) => boolean | void, priority: any) => any
+	export const slimeSplit: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.spawnerSpawn()
 
@@ -917,7 +917,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const spawnerSpawn: (callback: (event: any) => boolean | void, priority: any) => any
+	export const spawnerSpawn: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.villagerAcquireTrade()
 
@@ -930,7 +930,7 @@ declare module 'events' {
 ***/
 	export const villagerAcquireTrade: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.villagerReplenishTrade()
@@ -944,7 +944,7 @@ declare module 'events' {
 ***/
 	export const villagerReplenishTrade: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.hangingBreakByEntity()
@@ -958,7 +958,7 @@ declare module 'events' {
 ***/
 	export const hangingBreakByEntity: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.hangingBreak()
@@ -970,7 +970,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const hangingBreak: (callback: (event: any) => boolean | void, priority: any) => any
+	export const hangingBreak: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.hangingPlace()
 
@@ -981,7 +981,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const hangingPlace: (callback: (event: any) => boolean | void, priority: any) => any
+	export const hangingPlace: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.brew()
 
@@ -992,7 +992,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const brew: (callback: (event: any) => boolean | void, priority: any) => any
+	export const brew: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.brewingStandFuel()
 
@@ -1003,7 +1003,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const brewingStandFuel: (callback: (event: any) => boolean | void, priority: any) => any
+	export const brewingStandFuel: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.craftItem()
 
@@ -1014,7 +1014,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const craftItem: (callback: (event: any) => boolean | void, priority: any) => any
+	export const craftItem: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.furnaceBurn()
 
@@ -1025,7 +1025,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const furnaceBurn: (callback: (event: any) => boolean | void, priority: any) => any
+	export const furnaceBurn: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.furnaceExtract()
 
@@ -1036,7 +1036,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const furnaceExtract: (callback: (event: any) => boolean | void, priority: any) => any
+	export const furnaceExtract: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.furnaceSmelt()
 
@@ -1047,7 +1047,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const furnaceSmelt: (callback: (event: any) => boolean | void, priority: any) => any
+	export const furnaceSmelt: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.inventoryClick()
 
@@ -1058,7 +1058,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const inventoryClick: (callback: (event: any) => boolean | void, priority: any) => any
+	export const inventoryClick: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.inventoryClose()
 
@@ -1069,7 +1069,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const inventoryClose: (callback: (event: any) => boolean | void, priority: any) => any
+	export const inventoryClose: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.inventoryCreative()
 
@@ -1082,7 +1082,7 @@ declare module 'events' {
 ***/
 	export const inventoryCreative: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.inventoryDrag()
@@ -1094,7 +1094,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const inventoryDrag: (callback: (event: any) => boolean | void, priority: any) => any
+	export const inventoryDrag: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.inventory()
 
@@ -1105,7 +1105,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const inventory: (callback: (event: any) => boolean | void, priority: any) => any
+	export const inventory: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.inventoryMoveItem()
 
@@ -1118,7 +1118,7 @@ declare module 'events' {
 ***/
 	export const inventoryMoveItem: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.inventoryOpen()
@@ -1130,7 +1130,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const inventoryOpen: (callback: (event: any) => boolean | void, priority: any) => any
+	export const inventoryOpen: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.inventoryPickupItem()
 
@@ -1143,7 +1143,7 @@ declare module 'events' {
 ***/
 	export const inventoryPickupItem: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.prepareAnvil()
@@ -1155,7 +1155,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const prepareAnvil: (callback: (event: any) => boolean | void, priority: any) => any
+	export const prepareAnvil: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.prepareItemCraft()
 
@@ -1166,7 +1166,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const prepareItemCraft: (callback: (event: any) => boolean | void, priority: any) => any
+	export const prepareItemCraft: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.asyncPlayerChat()
 
@@ -1177,7 +1177,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const asyncPlayerChat: (callback: (event: any) => boolean | void, priority: any) => any
+	export const asyncPlayerChat: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.asyncPlayerPreLogin()
 
@@ -1190,7 +1190,7 @@ declare module 'events' {
 ***/
 	export const asyncPlayerPreLogin: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerAchievementAwarded()
@@ -1204,7 +1204,7 @@ declare module 'events' {
 ***/
 	export const playerAchievementAwarded: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerAdvancementDone()
@@ -1218,7 +1218,7 @@ declare module 'events' {
 ***/
 	export const playerAdvancementDone: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerAnimation()
@@ -1230,7 +1230,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerAnimation: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerAnimation: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerArmorStandManipulate()
 
@@ -1243,7 +1243,7 @@ declare module 'events' {
 ***/
 	export const playerArmorStandManipulate: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerBedEnter()
@@ -1255,7 +1255,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerBedEnter: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerBedEnter: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerBedLeave()
 
@@ -1266,7 +1266,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerBedLeave: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerBedLeave: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerBucketEmpty()
 
@@ -1279,7 +1279,7 @@ declare module 'events' {
 ***/
 	export const playerBucketEmpty: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerBucketFill()
@@ -1291,7 +1291,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerBucketFill: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerBucketFill: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerChangedMainHand()
 
@@ -1304,7 +1304,7 @@ declare module 'events' {
 ***/
 	export const playerChangedMainHand: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerChangedWorld()
@@ -1318,7 +1318,7 @@ declare module 'events' {
 ***/
 	export const playerChangedWorld: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerChat()
@@ -1330,7 +1330,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerChat: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerChat: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerChatTabComplete()
 
@@ -1343,7 +1343,7 @@ declare module 'events' {
 ***/
 	export const playerChatTabComplete: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerCommandPreprocess()
@@ -1357,7 +1357,7 @@ declare module 'events' {
 ***/
 	export const playerCommandPreprocess: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerDropItem()
@@ -1369,7 +1369,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerDropItem: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerDropItem: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerEditBook()
 
@@ -1380,7 +1380,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerEditBook: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerEditBook: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerEggThrow()
 
@@ -1391,7 +1391,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerEggThrow: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerEggThrow: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerExpChange()
 
@@ -1402,7 +1402,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerExpChange: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerExpChange: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerFish()
 
@@ -1413,7 +1413,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerFish: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerFish: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerGameModeChange()
 
@@ -1426,7 +1426,7 @@ declare module 'events' {
 ***/
 	export const playerGameModeChange: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerInteractAtEntity()
@@ -1440,7 +1440,7 @@ declare module 'events' {
 ***/
 	export const playerInteractAtEntity: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerInteractEntity()
@@ -1454,7 +1454,7 @@ declare module 'events' {
 ***/
 	export const playerInteractEntity: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerInteract()
@@ -1466,7 +1466,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerInteract: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerInteract: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerItemBreak()
 
@@ -1477,7 +1477,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerItemBreak: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerItemBreak: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerItemConsume()
 
@@ -1490,7 +1490,7 @@ declare module 'events' {
 ***/
 	export const playerItemConsume: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerItemDamage()
@@ -1502,7 +1502,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerItemDamage: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerItemDamage: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerItemHeld()
 
@@ -1513,7 +1513,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerItemHeld: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerItemHeld: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerJoin()
 
@@ -1524,7 +1524,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerJoin: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerJoin: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerKick()
 
@@ -1535,7 +1535,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerKick: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerKick: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerLevelChange()
 
@@ -1548,7 +1548,7 @@ declare module 'events' {
 ***/
 	export const playerLevelChange: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerLocaleChange()
@@ -1562,7 +1562,7 @@ declare module 'events' {
 ***/
 	export const playerLocaleChange: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerLogin()
@@ -1574,7 +1574,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerLogin: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerLogin: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerMove()
 
@@ -1585,7 +1585,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerMove: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerMove: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerPickupArrow()
 
@@ -1598,7 +1598,7 @@ declare module 'events' {
 ***/
 	export const playerPickupArrow: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerPickupItem()
@@ -1610,7 +1610,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerPickupItem: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerPickupItem: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerPortal()
 
@@ -1621,7 +1621,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerPortal: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerPortal: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerPreLogin()
 
@@ -1632,7 +1632,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerPreLogin: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerPreLogin: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerQuit()
 
@@ -1643,7 +1643,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerQuit: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerQuit: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerRegisterChannel()
 
@@ -1656,7 +1656,7 @@ declare module 'events' {
 ***/
 	export const playerRegisterChannel: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerResourcePackStatus()
@@ -1670,7 +1670,7 @@ declare module 'events' {
 ***/
 	export const playerResourcePackStatus: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerRespawn()
@@ -1682,7 +1682,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerRespawn: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerRespawn: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerShearEntity()
 
@@ -1695,7 +1695,7 @@ declare module 'events' {
 ***/
 	export const playerShearEntity: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerStatisticIncrement()
@@ -1709,7 +1709,7 @@ declare module 'events' {
 ***/
 	export const playerStatisticIncrement: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerSwapHandItems()
@@ -1723,7 +1723,7 @@ declare module 'events' {
 ***/
 	export const playerSwapHandItems: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerTeleport()
@@ -1735,7 +1735,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerTeleport: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerTeleport: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.playerToggleFlight()
 
@@ -1748,7 +1748,7 @@ declare module 'events' {
 ***/
 	export const playerToggleFlight: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerToggleSneak()
@@ -1762,7 +1762,7 @@ declare module 'events' {
 ***/
 	export const playerToggleSneak: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerToggleSprint()
@@ -1776,7 +1776,7 @@ declare module 'events' {
 ***/
 	export const playerToggleSprint: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerUnleashEntity()
@@ -1790,7 +1790,7 @@ declare module 'events' {
 ***/
 	export const playerUnleashEntity: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerUnregisterChannel()
@@ -1804,7 +1804,7 @@ declare module 'events' {
 ***/
 	export const playerUnregisterChannel: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.playerVelocity()
@@ -1816,7 +1816,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const playerVelocity: (callback: (event: any) => boolean | void, priority: any) => any
+	export const playerVelocity: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.broadcastMessage()
 
@@ -1827,7 +1827,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const broadcastMessage: (callback: (event: any) => boolean | void, priority: any) => any
+	export const broadcastMessage: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.mapInitialize()
 
@@ -1838,7 +1838,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const mapInitialize: (callback: (event: any) => boolean | void, priority: any) => any
+	export const mapInitialize: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.pluginDisable()
 
@@ -1849,7 +1849,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const pluginDisable: (callback: (event: any) => boolean | void, priority: any) => any
+	export const pluginDisable: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.pluginEnable()
 
@@ -1860,7 +1860,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const pluginEnable: (callback: (event: any) => boolean | void, priority: any) => any
+	export const pluginEnable: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.remoteServerCommand()
 
@@ -1873,7 +1873,7 @@ declare module 'events' {
 ***/
 	export const remoteServerCommand: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.serverCommand()
@@ -1885,7 +1885,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const serverCommand: (callback: (event: any) => boolean | void, priority: any) => any
+	export const serverCommand: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.serverListPing()
 
@@ -1896,7 +1896,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const serverListPing: (callback: (event: any) => boolean | void, priority: any) => any
+	export const serverListPing: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.serviceRegister()
 
@@ -1907,7 +1907,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const serviceRegister: (callback: (event: any) => boolean | void, priority: any) => any
+	export const serviceRegister: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.serviceUnregister()
 
@@ -1920,7 +1920,7 @@ declare module 'events' {
 ***/
 	export const serviceUnregister: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.tabComplete()
@@ -1932,7 +1932,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const tabComplete: (callback: (event: any) => boolean | void, priority: any) => any
+	export const tabComplete: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.vehicleBlockCollision()
 
@@ -1945,7 +1945,7 @@ declare module 'events' {
 ***/
 	export const vehicleBlockCollision: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.vehicleCreate()
@@ -1957,7 +1957,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const vehicleCreate: (callback: (event: any) => boolean | void, priority: any) => any
+	export const vehicleCreate: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.vehicleDamage()
 
@@ -1968,7 +1968,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const vehicleDamage: (callback: (event: any) => boolean | void, priority: any) => any
+	export const vehicleDamage: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.vehicleDestroy()
 
@@ -1979,7 +1979,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const vehicleDestroy: (callback: (event: any) => boolean | void, priority: any) => any
+	export const vehicleDestroy: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.vehicleEnter()
 
@@ -1990,7 +1990,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const vehicleEnter: (callback: (event: any) => boolean | void, priority: any) => any
+	export const vehicleEnter: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.vehicleEntityCollision()
 
@@ -2003,7 +2003,7 @@ declare module 'events' {
 ***/
 	export const vehicleEntityCollision: (
 		callback: (event: any) => boolean | void,
-		priority: any
+		priority?: any
 	) => any
 	/*********************
 ### events.vehicleExit()
@@ -2015,7 +2015,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const vehicleExit: (callback: (event: any) => boolean | void, priority: any) => any
+	export const vehicleExit: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.vehicleMove()
 
@@ -2026,7 +2026,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const vehicleMove: (callback: (event: any) => boolean | void, priority: any) => any
+	export const vehicleMove: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.vehicleUpdate()
 
@@ -2037,7 +2037,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const vehicleUpdate: (callback: (event: any) => boolean | void, priority: any) => any
+	export const vehicleUpdate: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.lightningStrike()
 
@@ -2048,7 +2048,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const lightningStrike: (callback: (event: any) => boolean | void, priority: any) => any
+	export const lightningStrike: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.thunderChange()
 
@@ -2059,7 +2059,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const thunderChange: (callback: (event: any) => boolean | void, priority: any) => any
+	export const thunderChange: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.weatherChange()
 
@@ -2070,7 +2070,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const weatherChange: (callback: (event: any) => boolean | void, priority: any) => any
+	export const weatherChange: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.chunkLoad()
 
@@ -2081,7 +2081,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const chunkLoad: (callback: (event: any) => boolean | void, priority: any) => any
+	export const chunkLoad: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.chunkPopulate()
 
@@ -2092,7 +2092,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const chunkPopulate: (callback: (event: any) => boolean | void, priority: any) => any
+	export const chunkPopulate: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.chunkUnload()
 
@@ -2103,7 +2103,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const chunkUnload: (callback: (event: any) => boolean | void, priority: any) => any
+	export const chunkUnload: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.portalCreate()
 
@@ -2114,7 +2114,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const portalCreate: (callback: (event: any) => boolean | void, priority: any) => any
+	export const portalCreate: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.spawnChange()
 
@@ -2125,7 +2125,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const spawnChange: (callback: (event: any) => boolean | void, priority: any) => any
+	export const spawnChange: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.structureGrow()
 
@@ -2136,7 +2136,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const structureGrow: (callback: (event: any) => boolean | void, priority: any) => any
+	export const structureGrow: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.worldInit()
 
@@ -2147,7 +2147,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const worldInit: (callback: (event: any) => boolean | void, priority: any) => any
+	export const worldInit: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.worldLoad()
 
@@ -2158,7 +2158,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const worldLoad: (callback: (event: any) => boolean | void, priority: any) => any
+	export const worldLoad: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.worldSave()
 
@@ -2169,7 +2169,7 @@ declare module 'events' {
  * priority - optional - see events.on() for more information.
 
 ***/
-	export const worldSave: (callback: (event: any) => boolean | void, priority: any) => any
+	export const worldSave: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.worldUnload()
 
