@@ -59,38 +59,37 @@ interface BlockEvent extends BukkitEvent {
 	getBlock(): BukkitBlock
 }
 
-
 interface BlockBreakEvent extends BlockEvent {
 	/**
 	* Sets whether or not the block will drop items as it normally would.
 	*
 	* @memberof blockBreakEvent
 	*/
-	setDropItems: (dropItems: boolean) => void
+	setDropItems(dropItems: boolean): void
 	/**
 	* Gets whether or not the block will drop items.
 
 	*
 	* @memberof blockBreakEvent
 	*/
-	isDropItems: () => boolean
+	isDropItems(): boolean
 	/**
 	* Gets the Player that is breaking the block involved in this event.
 	*
 	* @memberof blockBreakEvent
 	*/
-	getPlayer: () => BukkitPlayer
+	getPlayer(): BukkitPlayer
 	/**
 	* Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins
 	*
 	* @memberof blockBreakEvent
 	*/
-	isCancelled: () => boolean
+	isCancelled(): boolean
 	/**
 	* Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins.
 	* @memberof blockBreakEvent
 	*/
-	setCancelled: (cancel: boolean) => void
+	setCancelled(cancel: boolean): void
 }
 
 interface BlockBurnEvent extends BlockEvent {
@@ -320,13 +319,6 @@ declare module 'events' {
 	***/
 
 	export const blockBreak: (callback: (event: BlockBreakEvent) => boolean | void, priority?: any) => any
-
-	/**
-	 * Gets the block which ignited this block.
-	 * @interface BlockBurnEvent
-	 * @extends {BlockEvent}
-	 */
-
 
 	/*********************
 	### events.blockBurn()
