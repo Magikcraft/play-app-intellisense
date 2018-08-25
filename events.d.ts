@@ -29,63 +29,266 @@ The crucial difference is that the events module now has functions for each of t
 
 ***/
 
+interface BlockEvent extends Event {
+	/**
+	 * The block involved in this event.
+	 * @type {BukkitBlock}
+	 * @memberof BlockEvent
+	 */
+	block: BukkitBlock
+	/**
+	 * Gets the block involved in this event.
+	 * @returns {BukkitBlock}
+	 * @memberof BlockEvent
+	 */
+	getBlock(): BukkitBlock
+}
+
+interface Event {
+	/**
+	 * Convenience method for providing a user-friendly identifier.
+	 * @returns {string}
+	 * @memberof Event
+	 */
+	getEventName(): string
+}
+
+interface BlockBreakEvent extends BlockEvent {
+	/**
+	* Sets whether or not the block will drop items as it normally would.
+	*
+	* @memberof blockBreakEvent
+	*/
+	setDropItems: (dropItems: boolean) => void
+	/**
+	* Gets whether or not the block will drop items.
+
+	*
+	* @memberof blockBreakEvent
+	*/
+	isDropItems: () => boolean
+	/**
+	* Gets the Player that is breaking the block involved in this event.
+	*
+	* @memberof blockBreakEvent
+	*/
+	getPlayer: () => BukkitPlayer
+	/**
+	* Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins
+	*
+	* @memberof blockBreakEvent
+	*/
+	isCancelled: () => boolean
+	/**
+	* Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins.
+	* @memberof blockBreakEvent
+	*/
+	setCancelled: (cancel: boolean) => void
+}
+
+interface BlockBurnEvent extends BlockEvent {
+	/**
+	* Gets the block which ignited this block.
+	* @returns {BukkitBlock}
+	* @memberof BlockBurnEvent
+	*/
+	getIgnitingBlock(): BukkitBlock
+	/**
+	* Gets the cancellation state of this event.
+	* @returns {boolean}
+	* @memberof BlockBurnEvent
+	*/
+	isCancelled(): boolean
+	/**
+	* Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins.
+	* @param {boolean} cancel
+	* @memberof BlockBurnEvent
+	*/
+	setCancelled​(cancel: boolean)
+}
+
+interface BlockCanBuildEvent {
+	/**
+	* Gets the BlockData that we are trying to place.
+	* @returns {BlockData}
+	* @memberof BlockCanBuildEvent
+	*/
+	getBlockData(): BlockData
+	/**
+	* Gets the Material that we are trying to place.
+	* @returns {BukkitMaterial}
+	* @memberof BlockCanBuildEvent
+	*/
+	getMaterial(): BukkitMaterial
+	/**
+	* Gets whether or not the block can be built here.
+	* @returns {boolean}
+	* @memberof BlockCanBuildEvent
+	*/
+	isBuildable(): boolean
+	/**
+	* Sets whether the block can be built here or not.
+	* @param {boolean} cancel
+	* @memberof BlockCanBuildEvent
+	*/
+	setBuildable​(cancel: boolean): void
+}
+
+interface BlockDamageEvent extends BlockEvent {
+	/**
+	 * Gets if the block is set to instantly break when damaged by the player.
+	 *
+	 * @returns {boolean}
+	 * @memberof BlockDamageEvent
+	 */
+	getInstaBreak(): boolean
+	/**
+	 * Gets the ItemStack for the item currently in the player's hand.
+	 * @returns {ItemStack}
+	 * @memberof BlockDamageEvent
+	 */
+	getItemInHand(): ItemStack
+	/**
+	 * Gets the player damaging the block involved in this event.
+	 * @returns {BukkitPlayer}
+	 * @memberof BlockDamageEvent
+	 */
+	getPlayer(): BukkitPlayer
+	/**
+	 * Gets the cancellation state of this event.
+	 * @returns {boolean}
+	 * @memberof BlockDamageEvent
+	 */
+	isCancelled(): boolean
+	/**
+	 * Sets the cancellation state of this event.
+	 * @param {boolean} cancel
+	 * @memberof BlockDamageEvent
+	 */
+	setCancelled​(cancel: boolean): void
+	/**
+	 * Sets if the block should instantly break when damaged by the player.
+	 * @param {boolean} bool
+	 * @memberof BlockDamageEvent
+	 */
+	setInstaBreak​(bool: boolean): void
+}
+
+interface BlockDispenseEvent {
+	/**
+	 * Gets the item that is being dispensed.
+	 * @returns {ItemStack}
+	 * @memberof BlockDispenseEvent
+	 */
+	getItem(): ItemStack
+	/**
+	 * Gets the velocity.
+	 * @returns {Vector}
+	 * @memberof BlockDispenseEvent
+	 */
+	getVelocity(): Vector
+	/**
+	 * Gets the cancellation state of this event.
+	 * @memberof BlockDispenseEvent
+	 */
+	isCancelled()
+	/**
+	 * Sets the cancellation state of this event.
+	 * @param {boolean} cancel
+	 * @memberof BlockDispenseEvent
+	 */
+	setCancelled​(cancel: boolean)
+	/**
+	 * Sets the item being dispensed.
+	 * @param {ItemStack} item
+	 * @memberof BlockDispenseEvent
+	 */
+	setItem​(item: ItemStack)
+	/**
+	 * Sets the velocity of the item being dispensed.
+	 * @param {Vector} vel
+	 * @memberof BlockDispenseEvent
+	 */
+	setVelocity​(vel: Vector)
+}
+
+interface BlockExplodeEvent {
+	/**
+	 * Returns the list of blocks that would have been removed or were removed from the explosion event.
+	 *
+	 * @returns {BukkitBlock[]}
+	 * @memberof BlockExplodeEvent
+	 */
+	blockList(): BukkitBlock[]
+	/**
+	 * Returns the percentage of blocks to drop from this explosion
+	 * @returns {number}
+	 * @memberof BlockExplodeEvent
+	 */
+	getYield(): number
+	/**
+	 * Gets the cancellation state of this event.
+	 * @returns {boolean}
+	 * @memberof BlockExplodeEvent
+	 */
+	isCancelled(): boolean
+	/**
+	 * Sets the cancellation state of this event.
+	 * @param {boolean} cancel
+	 * @memberof BlockExplodeEvent
+	 */
+	setCancelled​(cancel: boolean): void
+	/**
+	 * Sets the percentage of blocks to drop from this explosion
+	 * @param {number} yield
+	 * @memberof BlockExplodeEvent
+	 */
+	setYield​(yield: number): void
+}
+
+interface BlockExpEvent {
+	/**
+	 * Get the experience dropped by the block after the event has processed
+	 * @returns {number}
+	 * @memberof BlockExpEvent
+	 */
+	getExpToDrop(): number
+	/**
+	 * Set the amount of experience dropped by the block after the event has processed
+	 * @param {number} exp
+	 * @memberof BlockExpEvent
+	 */
+	setExpToDrop​(exp: number)
+}
+
+interface BlockFadeEvent {
+	/**
+	 * Gets the state of the block that will be fading, melting or disappearing.
+	 * @returns {BlockState}
+	 * @memberof BlockFadeEvent
+	 */
+	getNewState(): BlockState
+	/**
+	 * Gets the cancellation state of this event.
+	 * @returns {boolean}
+	 * @memberof BlockFadeEvent
+	 */
+	isCancelled(): boolean
+	/**
+	 * Sets the cancellation state of this event.
+	 * @param {boolean} cancel
+	 * @memberof BlockFadeEvent
+	 */
+	setCancelled​(cancel: boolean)
+}
+
+
+
+
+
 declare module 'events' {
-	interface Event {
-		/**
-		 * Convenience method for providing a user-friendly identifier.
-		 * @returns {string}
-		 * @memberof Event
-		 */
-		getEventName(): string
-	}
-	interface BlockEvent extends Event {
-		/**
-		 * The block involved in this event.
-		 * @type {BukkitBlock}
-		 * @memberof BlockEvent
-		 */
-		block: BukkitBlock
-		/**
-		 * Gets the block involved in this event.
-		 * @returns {BukkitBlock}
-		 * @memberof BlockEvent
-		 */
-		getBlock(): BukkitBlock
-	}
 
-	interface BlockBreakEvent extends BlockEvent {
-		/**
-		* Sets whether or not the block will drop items as it normally would.
-		*
-		* @memberof blockBreakEvent
-		*/
-		setDropItems: (dropItems: boolean) => void
-		/**
-		* Gets whether or not the block will drop items.
 
-		*
-		* @memberof blockBreakEvent
-		*/
-		isDropItems: () => boolean
-		/**
-		* Gets the Player that is breaking the block involved in this event.
-		*
-		* @memberof blockBreakEvent
-		*/
-		getPlayer: () => BukkitPlayer
-		/**
-		* Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins
-		*
-		* @memberof blockBreakEvent
-		*/
-		isCancelled: () => boolean
-		/**
-		* Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins.
-		* @memberof blockBreakEvent
-		*/
-		setCancelled: (cancel: boolean) => void
-
-	}
 
 	/*********************
 	### events.blockBreak()
@@ -117,26 +320,7 @@ declare module 'events' {
 	 * @extends {BlockEvent}
 	 */
 
-	interface BlockBurnEvent extends BlockEvent {
-		/**
-		* Gets the block which ignited this block.
-		* @returns {BukkitBlock}
-		* @memberof BlockBurnEvent
-		*/
-		getIgnitingBlock(): BukkitBlock
-		/**
-		* Gets the cancellation state of this event.
-		* @returns {boolean}
-		* @memberof BlockBurnEvent
-		*/
-		isCancelled(): boolean
-		/**
-		* Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins.
-		* @param {boolean} cancel
-		* @memberof BlockBurnEvent
-		*/
-		setCancelled​(cancel: boolean)
-	}
+
 	/*********************
 	### events.blockBurn()
 
@@ -152,32 +336,7 @@ declare module 'events' {
 	***/
 	export const blockBurn: (callback: (event: BlockBurnEvent) => boolean | void, priority?: any) => any
 
-	interface BlockCanBuildEvent {
-		/**
-		* Gets the BlockData that we are trying to place.
-		* @returns {BlockData}
-		* @memberof BlockCanBuildEvent
-		*/
-		getBlockData(): BlockData
-		/**
-		* Gets the Material that we are trying to place.
-		* @returns {BukkitMaterial}
-		* @memberof BlockCanBuildEvent
-		*/
-		getMaterial(): BukkitMaterial
-		/**
-		* Gets whether or not the block can be built here.
-		* @returns {boolean}
-		* @memberof BlockCanBuildEvent
-		*/
-		isBuildable(): boolean
-		/**
-		* Sets whether the block can be built here or not.
-		* @param {boolean} cancel
-		* @memberof BlockCanBuildEvent
-		*/
-		setBuildable​(cancel: boolean): void
-	}
+
 
 	/*********************
 	### events.blockCanBuild()
@@ -197,45 +356,7 @@ declare module 'events' {
 	***/
 	export const blockCanBuild: (callback: (event: BlockCanBuildEvent) => boolean | void, priority?: any) => any
 
-	interface BlockDamageEvent extends BlockEvent {
-		/**
-		 * Gets if the block is set to instantly break when damaged by the player.
-		 *
-		 * @returns {boolean}
-		 * @memberof BlockDamageEvent
-		 */
-		getInstaBreak(): boolean
-		/**
-		 * Gets the ItemStack for the item currently in the player's hand.
-		 * @returns {ItemStack}
-		 * @memberof BlockDamageEvent
-		 */
-		getItemInHand(): ItemStack
-		/**
-		 * Gets the player damaging the block involved in this event.
-		 * @returns {BukkitPlayer}
-		 * @memberof BlockDamageEvent
-		 */
-		getPlayer(): BukkitPlayer
-		/**
-		 * Gets the cancellation state of this event.
-		 * @returns {boolean}
-		 * @memberof BlockDamageEvent
-		 */
-		isCancelled(): boolean
-		/**
-		 * Sets the cancellation state of this event.
-		 * @param {boolean} cancel
-		 * @memberof BlockDamageEvent
-		 */
-		setCancelled​(cancel: boolean): void
-		/**
-		 * Sets if the block should instantly break when damaged by the player.
-		 * @param {boolean} bool
-		 * @memberof BlockDamageEvent
-		 */
-		setInstaBreak​(bool: boolean): void
-	}
+
 
 	/*********************
 	### events.blockDamage()
@@ -252,43 +373,7 @@ declare module 'events' {
 	***/
 	export const blockDamage: (callback: (event: BlockDamageEvent) => boolean | void, priority?: any) => any
 
-	interface BlockDispenseEvent {
-		/**
-		 * Gets the item that is being dispensed.
-		 * @returns {ItemStack}
-		 * @memberof BlockDispenseEvent
-		 */
-		getItem(): ItemStack
-		/**
-		 * Gets the velocity.
-		 * @returns {Vector}
-		 * @memberof BlockDispenseEvent
-		 */
-		getVelocity(): Vector
-		/**
-		 * Gets the cancellation state of this event.
-		 * @memberof BlockDispenseEvent
-		 */
-		isCancelled()
-		/**
-		 * Sets the cancellation state of this event.
-		 * @param {boolean} cancel
-		 * @memberof BlockDispenseEvent
-		 */
-		setCancelled​(cancel: boolean)
-		/**
-		 * Sets the item being dispensed.
-		 * @param {ItemStack} item
-		 * @memberof BlockDispenseEvent
-		 */
-		setItem​(item: ItemStack)
-		/**
-		 * Sets the velocity of the item being dispensed.
-		 * @param {Vector} vel
-		 * @memberof BlockDispenseEvent
-		 */
-		setVelocity​(vel: Vector)
-	}
+
 	/*********************
 	### events.blockDispense()
 
@@ -304,20 +389,7 @@ declare module 'events' {
 	***/
 	export const blockDispense: (callback: (event: BlockDispenseEvent) => boolean | void, priority?: any) => any
 
-	interface BlockExpEvent {
-		/**
-		 * Get the experience dropped by the block after the event has processed
-		 * @returns {number}
-		 * @memberof BlockExpEvent
-		 */
-		getExpToDrop(): number
-		/**
-		 * Set the amount of experience dropped by the block after the event has processed
-		 * @param {number} exp
-		 * @memberof BlockExpEvent
-		 */
-		setExpToDrop​(exp: number)
-	}
+
 	/*********************
 	### events.blockExp()
 
@@ -332,39 +404,7 @@ declare module 'events' {
 	***/
 	export const blockExp: (callback: (event: BlockExpEvent) => boolean | void, priority?: any) => any
 
-	interface BlockExplodeEvent {
-		/**
-		 * Returns the list of blocks that would have been removed or were removed from the explosion event.
-		 *
-		 * @returns {BukkitBlock[]}
-		 * @memberof BlockExplodeEvent
-		 */
-		blockList(): BukkitBlock[]
-		/**
-		 * Returns the percentage of blocks to drop from this explosion
-		 * @returns {number}
-		 * @memberof BlockExplodeEvent
-		 */
-		getYield(): number
-		/**
-		 * Gets the cancellation state of this event.
-		 * @returns {boolean}
-		 * @memberof BlockExplodeEvent
-		 */
-		isCancelled(): boolean
-		/**
-		 * Sets the cancellation state of this event.
-		 * @param {boolean} cancel
-		 * @memberof BlockExplodeEvent
-		 */
-		setCancelled​(cancel: boolean): void
-		/**
-		 * Sets the percentage of blocks to drop from this explosion
-		 * @param {number} yield
-		 * @memberof BlockExplodeEvent
-		 */
-		setYield​(yield: number): void
-	}
+
 	/*********************
 	### events.blockExplode()
 
@@ -379,26 +419,6 @@ declare module 'events' {
 	***/
 	export const blockExplode: (callback: (event: BlockExplodeEvent) => boolean | void, priority?: any) => any
 
-	interface BlockFadeEvent {
-		/**
-		 * Gets the state of the block that will be fading, melting or disappearing.
-		 * @returns {BlockState}
-		 * @memberof BlockFadeEvent
-		 */
-		getNewState(): BlockState
-		/**
-		 * Gets the cancellation state of this event.
-		 * @returns {boolean}
-		 * @memberof BlockFadeEvent
-		 */
-		isCancelled(): boolean
-		/**
-		 * Sets the cancellation state of this event.
-		 * @param {boolean} cancel
-		 * @memberof BlockFadeEvent
-		 */
-		setCancelled​(cancel: boolean)
-	}
 
 	/*********************
 	### events.blockFade()
