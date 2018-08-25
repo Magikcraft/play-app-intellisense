@@ -73,13 +73,13 @@ interface BukkitLocation {
     getPitch(): number;
     getWorld(): BukkitWorld;
     getBlock(): BukkitBlock;
-    getDirection(): vector;
+    getDirection(): Vector;
 
     clone(): BukkitLocation;
 }
 
-interface vector {
-    multiply(num: number): vector;
+interface Vector {
+    multiply(num: number): Vector;
 }
 
 interface BukkitWorld {
@@ -95,7 +95,95 @@ interface BukkitBlock {
     getType(): BukkitBlockType;
     getRelative(x: number, y: number, z: number): BukkitBlock;
     setType(newType: BukkitBlockType): void;
+    /**
+     * Breaks the block and spawns items as if a player had digged it
+     * @memberof BukkitBlock
+     */
+    breakNaturally():boolean
+    /**
+     * Breaks the block and spawns items as if a player had digged it with a specific tool
+     * @param {ItemStack} tool
+     * @returns {boolean}
+     * @memberof BukkitBlock
+     */
+    breakNaturally​(tool: ItemStack): boolean
+    /**
+     * Returns the biome that this block resides in
+     * @returns {Biome}
+     * @memberof BukkitBlock
+     */
+    getBiome(): Biome
+    /**
+     * Gets the complete block data for this block
+     * @returns {BlockData}
+     * @memberof BukkitBlock
+     */
+    getBlockData(): BlockData
+    /**
+     * Returns the redstone power being provided to this block
+     * @returns {number}
+     * @memberof BukkitBlock
+     */
+    getBlockPower(): number
+    /**
+     * Returns the redstone power being provided to this block face
+     * @param {BlockFace} face
+     * @returns {number}
+     * @memberof BukkitBlock
+     */
+    getBlockPower​(face: BlockFace): number
+    /**
+     * Gets the chunk which contains this block
+     * @returns {Chunk}
+     * @memberof BukkitBlock
+     */
+    getChunk(): Chunk
+    /**
+     * Returns a list of items which would drop by destroying this block
+     * @returns {ItemStack[]}
+     * @memberof BukkitBlock
+     */
+    getDrops(): ItemStack[]
+    /**
+     * Returns a list of items which would drop by destroying this block with a specific tool
+     * @param {ItemStack} tool
+     * @returns {ItemStack[]}
+     * @memberof BukkitBlock
+     */
+    getDrops(tool: ItemStack): ItemStack[]
+    /**
+     * Gets the Location of the block
+     * @returns {BukkitLocation}
+     * @memberof BukkitBlock
+     */
+    getLocation(): BukkitLocation
+    /**
+     * Gets the type of this block
+     * @returns {BukkitMaterial}
+     * @memberof BukkitBlock
+     */
+    getType(): BukkitMaterial
+    /**
+     * Gets the world which contains this Block
+     * @returns {BukkitWorld}
+     * @memberof BukkitBlock
+     */
+    getWorld(): BukkitWorld
+    /**
+     * Sets the complete data for this block
+     * @param {BlockData} data
+     * @param {boolean} applyPhysics
+     * @memberof BukkitBlock
+     */
+    setBlockData​(data: BlockData, applyPhysics: boolean): void
 }
+
+type ItemStack = any
+type Biome = any
+type BlockData = any
+type BlockFace = any
+type Chunk = any
+type BlockState = any
 
 interface BukkitBlockType {
     equals(comparison: any): boolean;

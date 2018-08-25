@@ -1,3 +1,16 @@
+interface BukkitPlayer {
+    addPotionEffect(effect: any): void;
+    getFoodLevel(): number;
+    setFoodLevel(level: number): void;
+    getWorld(): BukkitWorld;
+    getName(): string;
+    getLocation(): BukkitLocation;
+    getEyeLocation(): BukkitLocation;
+    getLineOfSight(blocks: BukkitMaterial[], maxDistance: number): BukkitBlock[];
+    launchProjectile(projectileType: any): void;
+    isSneaking(): boolean;
+}
+
 /*********************
 ## Events Helper Module (SpigotMC version)
 The Events helper module provides a suite of functions - one for each possible event.
@@ -15,106 +28,408 @@ to choose from any of the approx. 160 different event types to listen to.
 The crucial difference is that the events module now has functions for each of the built-in events. The functions are accessible via TAB-completion so will help beginning programmers to explore the events at the server console window.
 
 ***/
-/*********************
-### events.blockBreak()
-
-#### Parameters
-
- * callback - A function which is called whenever the [block.BlockBreakEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockBreakEvent.html) is fired
-
- * priority - optional - see events.on() for more information.
-
-***/
 
 declare module 'events' {
-	export const blockBreak: (callback: (event: any) => boolean | void, priority?: any) => any
+	interface Event {
+		/**
+		 * Convenience method for providing a user-friendly identifier.
+		 * @returns {string}
+		 * @memberof Event
+		 */
+		getEventName(): string
+	}
+	interface BlockEvent extends Event {
+		/**
+		 * The block involved in this event.
+		 * @type {BukkitBlock}
+		 * @memberof BlockEvent
+		 */
+		block: BukkitBlock
+		/**
+		 * Gets the block involved in this event.
+		 * @returns {BukkitBlock}
+		 * @memberof BlockEvent
+		 */
+		getBlock(): BukkitBlock
+	}
+
+	interface BlockBreakEvent extends BlockEvent {
+		/**
+		* Sets whether or not the block will drop items as it normally would.
+		*
+		* @memberof blockBreakEvent
+		*/
+		setDropItems: (dropItems: boolean) => void
+		/**
+		* Gets whether or not the block will drop items.
+
+		*
+		* @memberof blockBreakEvent
+		*/
+		isDropItems: () => boolean
+		/**
+		* Gets the Player that is breaking the block involved in this event.
+		*
+		* @memberof blockBreakEvent
+		*/
+		getPlayer: () => BukkitPlayer
+		/**
+		* Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins
+		*
+		* @memberof blockBreakEvent
+		*/
+		isCancelled: () => boolean
+		/**
+		* Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins.
+		* @memberof blockBreakEvent
+		*/
+		setCancelled: (cancel: boolean) => void
+
+	}
+
 	/*********************
-### events.blockBurn()
+	### events.blockBreak()
 
-#### Parameters
+	Called when a block is broken by a player.
+	If you wish to have the block drop experience, you must set the experience value above 0. By default, experience will be set in the event if:
 
- * callback - A function which is called whenever the [block.BlockBurnEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockBurnEvent.html) is fired
+	The player is not in creative or adventure mode
+	The player can loot the block (ie: does not destroy it completely, by using the correct tool)
+	The player does not have silk touch
+	The block drops experience in vanilla Minecraft
+	Note: Plugins wanting to simulate a traditional block drop should set the block to air and utilize their own methods for determining what the default drop for the block being broken is and what to do about it, if anything.
 
- * priority - optional - see events.on() for more information.
+	If a Block Break event is cancelled, the block will not break and experience will not drop.
 
-***/
-	export const blockBurn: (callback: (event: any) => boolean | void, priority?: any) => any
+	#### Parameters
+
+	* callback - A function which is called whenever the [block.BlockBreakEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockBreakEvent.html) is fired
+
+	* priority - optional - see events.on() for more information.
+
+	***/
+
+	export const blockBreak: (callback: (event: BlockBreakEvent) => boolean | void, priority?: any) => any
+
+	/**
+	 * Gets the block which ignited this block.
+	 * @interface BlockBurnEvent
+	 * @extends {BlockEvent}
+	 */
+
+	interface BlockBurnEvent extends BlockEvent {
+		/**
+		* Gets the block which ignited this block.
+		* @returns {BukkitBlock}
+		* @memberof BlockBurnEvent
+		*/
+		getIgnitingBlock(): BukkitBlock
+		/**
+		* Gets the cancellation state of this event.
+		* @returns {boolean}
+		* @memberof BlockBurnEvent
+		*/
+		isCancelled(): boolean
+		/**
+		* Sets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins.
+		* @param {boolean} cancel
+		* @memberof BlockBurnEvent
+		*/
+		setCancelled​(cancel: boolean)
+	}
 	/*********************
-### events.blockCanBuild()
+	### events.blockBurn()
 
-#### Parameters
+	Called when a block is destroyed as a result of being burnt by fire.
+	If a Block Burn event is cancelled, the block will not be destroyed as a result of being burnt by fire.
 
- * callback - A function which is called whenever the [block.BlockCanBuildEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockCanBuildEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockBurnEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockBurnEvent.html) is fired
 
-***/
-	export const blockCanBuild: (callback: (event: any) => boolean | void, priority?: any) => any
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockBurn: (callback: (event: BlockBurnEvent) => boolean | void, priority?: any) => any
+
+	interface BlockCanBuildEvent {
+		/**
+		* Gets the BlockData that we are trying to place.
+		* @returns {BlockData}
+		* @memberof BlockCanBuildEvent
+		*/
+		getBlockData(): BlockData
+		/**
+		* Gets the Material that we are trying to place.
+		* @returns {BukkitMaterial}
+		* @memberof BlockCanBuildEvent
+		*/
+		getMaterial(): BukkitMaterial
+		/**
+		* Gets whether or not the block can be built here.
+		* @returns {boolean}
+		* @memberof BlockCanBuildEvent
+		*/
+		isBuildable(): boolean
+		/**
+		* Sets whether the block can be built here or not.
+		* @param {boolean} cancel
+		* @memberof BlockCanBuildEvent
+		*/
+		setBuildable​(cancel: boolean): void
+	}
+
 	/*********************
-### events.blockDamage()
+	### events.blockCanBuild()
 
-#### Parameters
+	Called when we try to place a block, to see if we can build it here or not.
+	Note:
 
- * callback - A function which is called whenever the [block.BlockDamageEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockDamageEvent.html) is fired
+	The Block returned by getBlock() is the block we are trying to place on, not the block we are trying to place.
+	If you want to figure out what is being placed, use getMaterial() instead.
 
- * priority - optional - see events.on() for more information.
+	#### Parameters
 
-***/
-	export const blockDamage: (callback: (event: any) => boolean | void, priority?: any) => any
+	* callback - A function which is called whenever the [block.BlockCanBuildEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockCanBuildEvent.html) is fired
+
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockCanBuild: (callback: (event: BlockCanBuildEvent) => boolean | void, priority?: any) => any
+
+	interface BlockDamageEvent extends BlockEvent {
+		/**
+		 * Gets if the block is set to instantly break when damaged by the player.
+		 *
+		 * @returns {boolean}
+		 * @memberof BlockDamageEvent
+		 */
+		getInstaBreak(): boolean
+		/**
+		 * Gets the ItemStack for the item currently in the player's hand.
+		 * @returns {ItemStack}
+		 * @memberof BlockDamageEvent
+		 */
+		getItemInHand(): ItemStack
+		/**
+		 * Gets the player damaging the block involved in this event.
+		 * @returns {BukkitPlayer}
+		 * @memberof BlockDamageEvent
+		 */
+		getPlayer(): BukkitPlayer
+		/**
+		 * Gets the cancellation state of this event.
+		 * @returns {boolean}
+		 * @memberof BlockDamageEvent
+		 */
+		isCancelled(): boolean
+		/**
+		 * Sets the cancellation state of this event.
+		 * @param {boolean} cancel
+		 * @memberof BlockDamageEvent
+		 */
+		setCancelled​(cancel: boolean): void
+		/**
+		 * Sets if the block should instantly break when damaged by the player.
+		 * @param {boolean} bool
+		 * @memberof BlockDamageEvent
+		 */
+		setInstaBreak​(bool: boolean): void
+	}
+
 	/*********************
-### events.blockDispense()
+	### events.blockDamage()
 
-#### Parameters
+	Called when a block is damaged by a player.
+	If a Block Damage event is cancelled, the block will not be damaged.
 
- * callback - A function which is called whenever the [block.BlockDispenseEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockDispenseEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockDamageEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockDamageEvent.html) is fired
 
-***/
-	export const blockDispense: (callback: (event: any) => boolean | void, priority?: any) => any
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockDamage: (callback: (event: BlockDamageEvent) => boolean | void, priority?: any) => any
+
+	interface BlockDispenseEvent {
+		/**
+		 * Gets the item that is being dispensed.
+		 * @returns {ItemStack}
+		 * @memberof BlockDispenseEvent
+		 */
+		getItem(): ItemStack
+		/**
+		 * Gets the velocity.
+		 * @returns {Vector}
+		 * @memberof BlockDispenseEvent
+		 */
+		getVelocity(): Vector
+		/**
+		 * Gets the cancellation state of this event.
+		 * @memberof BlockDispenseEvent
+		 */
+		isCancelled()
+		/**
+		 * Sets the cancellation state of this event.
+		 * @param {boolean} cancel
+		 * @memberof BlockDispenseEvent
+		 */
+		setCancelled​(cancel: boolean)
+		/**
+		 * Sets the item being dispensed.
+		 * @param {ItemStack} item
+		 * @memberof BlockDispenseEvent
+		 */
+		setItem​(item: ItemStack)
+		/**
+		 * Sets the velocity of the item being dispensed.
+		 * @param {Vector} vel
+		 * @memberof BlockDispenseEvent
+		 */
+		setVelocity​(vel: Vector)
+	}
 	/*********************
-### events.blockExp()
+	### events.blockDispense()
 
-#### Parameters
+	Called when an item is dispensed from a block.
+	If a Block Dispense event is cancelled, the block will not dispense the item.
 
- * callback - A function which is called whenever the [block.BlockExpEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockExpEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockDispenseEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockDispenseEvent.html) is fired
 
-***/
-	export const blockExp: (callback: (event: any) => boolean | void, priority?: any) => any
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockDispense: (callback: (event: BlockDispenseEvent) => boolean | void, priority?: any) => any
+
+	interface BlockExpEvent {
+		/**
+		 * Get the experience dropped by the block after the event has processed
+		 * @returns {number}
+		 * @memberof BlockExpEvent
+		 */
+		getExpToDrop(): number
+		/**
+		 * Set the amount of experience dropped by the block after the event has processed
+		 * @param {number} exp
+		 * @memberof BlockExpEvent
+		 */
+		setExpToDrop​(exp: number)
+	}
 	/*********************
-### events.blockExplode()
+	### events.blockExp()
 
-#### Parameters
+	An event that's called when a block yields experience.
 
- * callback - A function which is called whenever the [block.BlockExplodeEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockExplodeEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockExpEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockExpEvent.html) is fired
 
-***/
-	export const blockExplode: (callback: (event: any) => boolean | void, priority?: any) => any
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockExp: (callback: (event: BlockExpEvent) => boolean | void, priority?: any) => any
+
+	interface BlockExplodeEvent {
+		/**
+		 * Returns the list of blocks that would have been removed or were removed from the explosion event.
+		 *
+		 * @returns {BukkitBlock[]}
+		 * @memberof BlockExplodeEvent
+		 */
+		blockList(): BukkitBlock[]
+		/**
+		 * Returns the percentage of blocks to drop from this explosion
+		 * @returns {number}
+		 * @memberof BlockExplodeEvent
+		 */
+		getYield(): number
+		/**
+		 * Gets the cancellation state of this event.
+		 * @returns {boolean}
+		 * @memberof BlockExplodeEvent
+		 */
+		isCancelled(): boolean
+		/**
+		 * Sets the cancellation state of this event.
+		 * @param {boolean} cancel
+		 * @memberof BlockExplodeEvent
+		 */
+		setCancelled​(cancel: boolean): void
+		/**
+		 * Sets the percentage of blocks to drop from this explosion
+		 * @param {number} yield
+		 * @memberof BlockExplodeEvent
+		 */
+		setYield​(yield: number): void
+	}
 	/*********************
-### events.blockFade()
+	### events.blockExplode()
 
-#### Parameters
+	Called when a block explodes
 
- * callback - A function which is called whenever the [block.BlockFadeEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockFadeEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockExplodeEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockExplodeEvent.html) is fired
 
-***/
-	export const blockFade: (callback: (event: any) => boolean | void, priority?: any) => any
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockExplode: (callback: (event: BlockExplodeEvent) => boolean | void, priority?: any) => any
+
+	interface BlockFadeEvent {
+		/**
+		 * Gets the state of the block that will be fading, melting or disappearing.
+		 * @returns {BlockState}
+		 * @memberof BlockFadeEvent
+		 */
+		getNewState(): BlockState
+		/**
+		 * Gets the cancellation state of this event.
+		 * @returns {boolean}
+		 * @memberof BlockFadeEvent
+		 */
+		isCancelled(): boolean
+		/**
+		 * Sets the cancellation state of this event.
+		 * @param {boolean} cancel
+		 * @memberof BlockFadeEvent
+		 */
+		setCancelled​(cancel: boolean)
+	}
+
 	/*********************
-### events.blockForm()
+	### events.blockFade()
 
-#### Parameters
+	Called when a block fades, melts or disappears based on world conditions
+	Examples:
 
- * callback - A function which is called whenever the [block.BlockFormEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockFormEvent.html) is fired
+	Snow melting due to being near a light source.
+	Ice melting due to being near a light source.
+	Fire burning out after time, without destroying fuel block.
+	Coral fading to dead coral due to lack of water
+	If a Block Fade event is cancelled, the block will not fade, melt or disappear.
 
- * priority - optional - see events.on() for more information.
+	#### Parameters
 
-***/
+	* callback - A function which is called whenever the [block.BlockFadeEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockFadeEvent.html) is fired
+
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockFade: (callback: (event: BlockFadeEvent) => boolean | void, priority?: any) => any
+	/*********************
+	### events.blockForm()
+
+	#### Parameters
+
+	* callback - A function which is called whenever the [block.BlockFormEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockFormEvent.html) is fired
+
+	* priority - optional - see events.on() for more information.
+
+	***/
 	export const blockForm: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockFromTo()
