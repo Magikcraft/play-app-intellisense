@@ -1,3 +1,9 @@
+/**
+ * TypeScript Definitons for ScriptCraft
+ *
+ * Written by Magikcraft.io
+ *
+ */
 interface BukkitPlayer {
     addPotionEffect(effect: any): void;
     getFoodLevel(): number;
@@ -29,7 +35,16 @@ The crucial difference is that the events module now has functions for each of t
 
 ***/
 
-interface BlockEvent extends Event {
+interface BukkitEvent {
+	/**
+	 * Convenience method for providing a user-friendly identifier.
+	 * @returns {string}
+	 * @memberof Event
+	 */
+	getEventName(): string
+}
+
+interface BlockEvent extends BukkitEvent {
 	/**
 	 * The block involved in this event.
 	 * @type {BukkitBlock}
@@ -44,14 +59,6 @@ interface BlockEvent extends Event {
 	getBlock(): BukkitBlock
 }
 
-interface Event {
-	/**
-	 * Convenience method for providing a user-friendly identifier.
-	 * @returns {string}
-	 * @memberof Event
-	 */
-	getEventName(): string
-}
 
 interface BlockBreakEvent extends BlockEvent {
 	/**
