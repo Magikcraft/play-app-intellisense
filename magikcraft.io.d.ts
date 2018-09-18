@@ -1,3 +1,5 @@
+declare const require: (moduleName: string) => any;
+
 // Array.from polyfill
 interface ArrayConstructor {
     from<T, U>(arrayLike: ArrayLike<T>, mapfn: (v: T, k: number) => U, thisArg?: any): Array<U>;
