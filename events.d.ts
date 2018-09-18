@@ -4,15 +4,15 @@
  * Written by Magikcraft.io
  *
  */
-interface BukkitPlayer {
+interface Player {
     addPotionEffect(effect: any): void;
     getFoodLevel(): number;
     setFoodLevel(level: number): void;
-    getWorld(): BukkitWorld;
+    getWorld(): World;
     getName(): string;
-    getLocation(): BukkitLocation;
-    getEyeLocation(): BukkitLocation;
-    getLineOfSight(blocks: BukkitMaterial[], maxDistance: number): BukkitBlock[];
+    getLocation(): Location;
+    getEyeLocation(): Location;
+    getLineOfSight(blocks: BukkitMaterial[], maxDistance: number): Block[];
     launchProjectile(projectileType: any): void;
     isSneaking(): boolean;
 }
@@ -47,16 +47,16 @@ interface BukkitEvent {
 interface BlockEvent extends BukkitEvent {
 	/**
 	 * The block involved in this event.
-	 * @type {BukkitBlock}
+	 * @type {Block}
 	 * @memberof BlockEvent
 	 */
-	block: BukkitBlock
+	block: Block
 	/**
 	 * Gets the block involved in this event.
-	 * @returns {BukkitBlock}
+	 * @returns {Block}
 	 * @memberof BlockEvent
 	 */
-	getBlock(): BukkitBlock
+	getBlock(): Block
 }
 
 interface BlockBreakEvent extends BlockEvent {
@@ -78,7 +78,7 @@ interface BlockBreakEvent extends BlockEvent {
 	*
 	* @memberof blockBreakEvent
 	*/
-	getPlayer(): BukkitPlayer
+	getPlayer(): Player
 	/**
 	* Gets the cancellation state of this event. A cancelled event will not be executed in the server, but will still pass to other plugins
 	*
@@ -95,10 +95,10 @@ interface BlockBreakEvent extends BlockEvent {
 interface BlockBurnEvent extends BlockEvent {
 	/**
 	* Gets the block which ignited this block.
-	* @returns {BukkitBlock}
+	* @returns {Block}
 	* @memberof BlockBurnEvent
 	*/
-	getIgnitingBlock(): BukkitBlock
+	getIgnitingBlock(): Block
 	/**
 	* Gets the cancellation state of this event.
 	* @returns {boolean}
@@ -156,10 +156,10 @@ interface BlockDamageEvent extends BlockEvent {
 	getItemInHand(): ItemStack
 	/**
 	 * Gets the player damaging the block involved in this event.
-	 * @returns {BukkitPlayer}
+	 * @returns {Player}
 	 * @memberof BlockDamageEvent
 	 */
-	getPlayer(): BukkitPlayer
+	getPlayer(): Player
 	/**
 	 * Gets the cancellation state of this event.
 	 * @returns {boolean}
@@ -222,10 +222,10 @@ interface BlockExplodeEvent {
 	/**
 	 * Returns the list of blocks that would have been removed or were removed from the explosion event.
 	 *
-	 * @returns {BukkitBlock[]}
+	 * @returns {Block[]}
 	 * @memberof BlockExplodeEvent
 	 */
-	blockList(): BukkitBlock[]
+	blockList(): Block[]
 	/**
 	 * Returns the percentage of blocks to drop from this explosion
 	 * @returns {number}
@@ -246,10 +246,10 @@ interface BlockExplodeEvent {
 	setCancelled​(cancel: boolean): void
 	/**
 	 * Sets the percentage of blocks to drop from this explosion
-	 * @param {number} yield
+	 * @param {number} yieldBlocks
 	 * @memberof BlockExplodeEvent
 	 */
-	setYield​(yield: number): void
+	setYield​(yieldBlocks: number): void
 }
 
 interface BlockExpEvent {
@@ -288,14 +288,308 @@ interface BlockFadeEvent {
 	setCancelled​(cancel: boolean)
 }
 
+/**
+ * Called when a block grows naturally in the world.
+	Examples:
 
+	Wheat
+	Sugar Cane
+	Cactus
+	Watermelon
+	Pumpkin
+	If a Block Grow event is cancelled, the block will not grow.
+ *
+ * @interface BlockGrowEvent
+ * @extends {BlockEvent}
+ */
+interface BlockGrowEvent extends BlockEvent {
+	/**
+	 * Gets the state of the block where it will form or spread to.
+	 * @returns {BlockState}
+	 * @memberof BlockGrowEvent
+	 */
+	getNewState(): BlockState
+	/**
+	 * Gets the cancellation state of this event.
+	 * @returns {boolean}
+	 * @memberof BlockGrowEvent
+	 */
+	isCancelled(): boolean
+	/**
+	 * Sets the cancellation state of this event.
+	 * @param {boolean} cancel
+	 * @memberof BlockGrowEvent
+	 */
+	setCancelled(cancel: boolean)
+}
+/**
+ * Called when a block is formed or spreads based on world conditions.
+	Use BlockSpreadEvent to catch blocks that actually spread and don't just "randomly" form.
 
+	Examples:
 
+	Snow forming due to a snow storm.
+	Ice forming in a snowy Biome like Taiga or Tundra.
+	Obsidian / Cobblestone forming due to contact with water.
+	Concrete forming due to mixing of concrete powder and water.
+	If a Block Form event is cancelled, the block will not be formed.
+ *
+ * @interface BlockFormEvent
+ * @extends {BlockGrowEvent}
+ */
+interface BlockFormEvent extends BlockGrowEvent {
+}
+
+/**
+ * Represents events with a source block and a destination block, currently only applies to liquid (lava and water) and teleporting dragon eggs.
+	If a Block From To event is cancelled, the block will not move (the liquid will not flow).
+ *
+ * @interface BlockFromToEvent
+ */
+interface BlockFromToEvent extends BlockEvent {
+	/**
+	 * Gets the BlockFace that the block is moving to.
+	 *
+	 * @returns {BlockFace}
+	 * @memberof BlockFromToEvent
+	 */
+	getFace(): BlockFace
+	/**
+	 * Convenience method for getting the faced Block.
+	 *
+	 * @returns {Block}
+	 * @memberof BlockFromToEvent
+	 */
+	getToBlock(): Block
+	/**
+	 * Gets the cancellation state of this event.
+	 *
+	 * @returns {boolean}
+	 * @memberof BlockFromToEvent
+	 */
+	isCancelled(): boolean
+	/**
+	 * Sets the cancellation state of this event.
+	 *
+	 * @param {boolean} cancel
+	 * @memberof BlockFromToEvent
+	 */
+	setCancelled(cancel: boolean)
+}
+
+/**
+ * Called when a block is ignited. If you want to catch when a Player places fire, you need to use BlockPlaceEvent.
+	If a Block Ignite event is cancelled, the block will not be ignited.
+ *
+ * @interface BlockIgniteEvent
+ */
+interface BlockIgniteEvent extends BlockEvent {
+	/**
+	 * Gets the cause of block ignite.
+	 * @returns {number}
+	 * @memberof BlockIgniteEvent
+	 */
+	getCause(): number
+	/**
+	 * Gets the block which ignited this block
+	 * @returns {Block}
+	 * @memberof BlockIgniteEvent
+	 */
+	getIgnitingBlock(): Block
+	/**
+	 * Gets the entity who ignited this block
+	 * @returns {Entity}
+	 * @memberof BlockIgniteEvent
+	 */
+	getIgnitingEntity(): Entity
+	/**
+	 * Gets the player who ignited this block
+	 * @returns {Player}
+	 * @memberof BlockIgniteEvent
+	 */
+	getPlayer(): Player
+	/**
+	 * Gets the cancellation state of this event.
+	 * @returns {boolean}
+	 * @memberof BlockIgniteEvent
+	 */
+	isCancelled(): boolean
+	/**
+	 * Sets the cancellation state of this event.
+	 * @param {boolean} cancel
+	 * @memberof BlockIgniteEvent
+	 */
+	setCancelled​(cancel: boolean)
+}
+
+interface BlockPhysicsEvent extends BlockEvent {
+	/**
+	 * Gets the type of block that changed, causing this event
+	 * @returns {BukkitMaterial}
+	 * @memberof BlockPhysicsEvent
+	 */
+	getChangedType(): BukkitMaterial
+	/**
+	 * Gets the cancellation state of this event.
+	 * @returns {boolean}
+	 * @memberof BlockPhysicsEvent
+	 */
+	isCancelled(): boolean
+	/**
+	 * Sets the cancellation state of this event.
+	 * @param {boolean} cancel
+	 * @memberof BlockPhysicsEvent
+	 */
+	setCancelled(cancel: boolean)
+}
+
+interface BlockPistonEvent extends BlockEvent {
+	/**
+	 * Return the direction in which the piston will operate.
+	 * @returns {BlockFace}
+	 * @memberof BlockPistonEvent
+	 */
+	getDirection(): BlockFace
+	/**
+	 * Gets the cancellation state of this event.
+	 * @returns {boolean}
+	 * @memberof BlockPistonEvent
+	 */
+	isCancelled(): boolean
+	/**
+	 * Returns true if the Piston in the event is sticky.
+	 * @returns {boolean}
+	 * @memberof BlockPistonEvent
+	 */
+	isSticky(): boolean
+	/**
+	 * Sets the cancellation state of this event.
+	 * @param {boolean} cancelled
+	 * @memberof BlockPistonEvent
+	 */
+	setCancelled(cancelled: boolean)
+}
+
+interface BlockPistonExtendEvent extends BlockPistonEvent {
+	/**
+	 * Get an immutable list of the blocks which will be moved by the extending.
+	 * @returns {Block[]}
+	 * @memberof BlockPistonExtendEvent
+	 */
+	getBlocks(): Block[]
+}
+
+interface BlockPistonRetractEvent extends BlockPistonEvent {
+	/**
+	* Get an immutable list of the blocks which will be moved by the extending.
+	* @returns {Block[]}
+	* @memberof BlockPistonExtendEvent
+	*/
+	getBlocks(): Block[]
+	/**
+	 * Gets the location where the possible moving block might be if the retracting piston is sticky.
+	 * @returns {Location}
+	 * @memberof BlockPistonRetractEvent
+	 */
+	getRetractLocation(): Location
+}
+
+/**
+ * Called when a block is placed by a player.
+	If a Block Place event is cancelled, the block will not be placed.
+ * @interface BlockPlaceEvent
+ */
+interface BlockPlaceEvent extends BlockEvent {
+	/**
+	 * Gets the value whether the player would be allowed to build here.
+	 * @returns {boolean}
+	 * @memberof BlockPlaceEvent
+	 */
+	canBuild(): boolean
+	/**
+	 * Gets the block that this block was placed against
+	 * @returns {Block}
+	 * @memberof BlockPlaceEvent
+	 */
+	getBlockAgainst(): Block
+	/**
+	 * Clarity method for getting the placed block.
+	 * @returns {Block}
+	 * @memberof BlockPlaceEvent
+	 */
+	getBlockPlaced(): Block
+	/**
+	 * Gets the BlockState for the block which was replaced.
+	 *
+	 * @returns {BlockState}
+	 * @memberof BlockPlaceEvent
+	 */
+	getBlockReplacedState(): BlockState
+	/**
+	 * Gets the hand which placed the block
+	 * @returns {EquipmentSlot}
+	 * @memberof BlockPlaceEvent
+	 */
+	getHand(): EquipmentSlot
+	/**
+	 * Gets the item in the player's hand when they placed the block.
+	 * @returns {ItemStack}
+	 * @memberof BlockPlaceEvent
+	 */
+	getItemInHand(): ItemStack
+	/**
+	 * Gets the player who placed the block involved in this event.
+	 * @returns {Player}
+	 * @memberof BlockPlaceEvent
+	 */
+	getPlayer(): Player
+	/**
+	 * Gets the cancellation state of this event.
+	 * @returns {boolean}
+	 * @memberof BlockPlaceEvent
+	 */
+	isCancelled(): boolean
+	/**
+	 * Sets the canBuild state of this event.
+	 * @param {boolean} canBuild
+	 * @memberof BlockPlaceEvent
+	 */
+	setBuild​(canBuild: boolean): void
+	/**
+	 * Sets the cancellation state of this event.
+	 * @param {boolean} cancel
+	 * @memberof BlockPlaceEvent
+	 */
+	setCancelled(cancel: boolean): void
+}
+
+/**
+ * Called when a redstone current changes
+ * @interface BlockRedstoneEvent
+ * @extends {BlockEvent}
+ */
+interface BlockRedstoneEvent extends BlockEvent {
+	/**
+	 * Gets the new current of this block
+	 * @returns {number}
+	 * @memberof BlockRedstoneEvent
+	 */
+	getNewCurrent(): number
+	/**
+	 * Gets the old current of this block
+	 * @returns {number}
+	 * @memberof BlockRedstoneEvent
+	 */
+	getOldCurrrent(): number
+	/**
+	 * Sets the new current of this block
+	 * @param {number} newCurrent
+	 * @memberof BlockRedstoneEvent
+	 */
+	setNewCurrent(newCurrent: number)
+}
 
 declare module 'events' {
-
-
-
 	/*********************
 	### events.blockBreak()
 
@@ -442,6 +736,17 @@ declare module 'events' {
 	/*********************
 	### events.blockForm()
 
+	Called when a block is formed or spreads based on world conditions.
+	Use BlockSpreadEvent to catch blocks that actually spread and don't just "randomly" form.
+
+	Examples:
+
+	Snow forming due to a snow storm.
+	Ice forming in a snowy Biome like Taiga or Tundra.
+	Obsidian / Cobblestone forming due to contact with water.
+	Concrete forming due to mixing of concrete powder and water.
+	If a Block Form event is cancelled, the block will not be formed.
+
 	#### Parameters
 
 	* callback - A function which is called whenever the [block.BlockFormEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockFormEvent.html) is fired
@@ -449,112 +754,141 @@ declare module 'events' {
 	* priority - optional - see events.on() for more information.
 
 	***/
-	export const blockForm: (callback: (event: any) => boolean | void, priority?: any) => any
+	export const blockForm: (callback: (event: BlockFormEvent) => boolean | void, priority?: any) => any
 	/*********************
-### events.blockFromTo()
+	### events.blockFromTo()
 
-#### Parameters
+	Represents events with a source block and a destination block, currently only applies to liquid (lava and water) and teleporting dragon eggs.
+	If a Block From To event is cancelled, the block will not move (the liquid will not flow)
 
- * callback - A function which is called whenever the [block.BlockFromToEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockFromToEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockFromToEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockFromToEvent.html) is fired
 
-***/
-	export const blockFromTo: (callback: (event: any) => boolean | void, priority?: any) => any
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockFromTo: (callback: (event: BlockFromToEvent) => boolean | void, priority?: any) => any
 	/*********************
-### events.blockGrow()
+	### events.blockGrow()
+	Called when a block grows naturally in the world.
+	Examples:
 
-#### Parameters
+	Wheat
+	Sugar Cane
+	Cactus
+	Watermelon
+	Pumpkin
+	If a Block Grow event is cancelled, the block will no
 
- * callback - A function which is called whenever the [block.BlockGrowEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockGrowEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockGrowEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockGrowEvent.html) is fired
 
-***/
-	export const blockGrow: (callback: (event: any) => boolean | void, priority?: any) => any
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockGrow: (callback: (event: BlockGrowEvent) => boolean | void, priority?: any) => any
 	/*********************
-### events.blockIgnite()
+	### events.blockIgnite()
 
-#### Parameters
+	Called when a block is ignited. If you want to catch when a Player places fire, you need to use BlockPlaceEvent.
+	If a Block Ignite event is cancelled, the block will not be ignited
 
- * callback - A function which is called whenever the [block.BlockIgniteEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockIgniteEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockIgniteEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockIgniteEvent.html) is fired
 
-***/
-	export const blockIgnite: (callback: (event: any) => boolean | void, priority?: any) => any
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockIgnite: (callback: (event: BlockIgniteEvent) => boolean | void, priority?: any) => any
 	/*********************
-### events.blockMultiPlace()
+	### events.blockMultiPlace()
 
-#### Parameters
+	#### Parameters
 
- * callback - A function which is called whenever the [block.BlockMultiPlaceEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockMultiPlaceEvent.html) is fired
+	* callback - A function which is called whenever the [block.BlockMultiPlaceEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockMultiPlaceEvent.html) is fired
 
- * priority - optional - see events.on() for more information.
+	* priority - optional - see events.on() for more information.
 
-***/
+	***/
 	export const blockMultiPlace: (callback: (event: any) => boolean | void, priority?: any) => any
 	/*********************
-### events.blockPhysics()
+	### events.blockPhysics()
 
-#### Parameters
+	Thrown when a block physics check is called.
+	This event is a high frequency event, it may be called thousands of times per a second on a busy server. Plugins are advised to listen to the event with caution and only perform lightweight checks when using it.
+	In addition to this, cancelling the event is liable to leave the world in an inconsistent state. For example if you use the event to leave a block floating in mid air when that block has a requirement to be attached to something, there is no guarantee that the floating block will persist across server restarts or map upgrades.
 
- * callback - A function which is called whenever the [block.BlockPhysicsEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockPhysicsEvent.html) is fired
+	Plugins should also note that where possible this event may only called for the "root" block of physics updates in order to limit event spam. Physics updates that cause other blocks to change their state may not result in an event for each of those blocks (usually adjacent). If you are concerned about monitoring these changes then you should check adjacent blocks yourself.
 
- * priority - optional - see events.on() for more information.
+	#### Parameters
 
-***/
-	export const blockPhysics: (callback: (event: any) => boolean | void, priority?: any) => any
+	* callback - A function which is called whenever the [block.BlockPhysicsEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockPhysicsEvent.html) is fired
+
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockPhysics: (callback: (event: BlockPhysicsEvent) => boolean | void, priority?: any) => any
 	/*********************
-### events.blockPistonExtend()
+	### events.blockPistonExtend()
 
-#### Parameters
+	#### Parameters
 
- * callback - A function which is called whenever the [block.BlockPistonExtendEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockPistonExtendEvent.html) is fired
+	Called when a piston extends
+	* callback - A function which is called whenever the [block.BlockPistonExtendEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockPistonExtendEvent.html) is fired
 
- * priority - optional - see events.on() for more information.
+	* priority - optional - see events.on() for more information.
 
-***/
+	***/
 	export const blockPistonExtend: (
-		callback: (event: any) => boolean | void,
+		callback: (event: BlockPistonExtendEvent) => boolean | void,
 		priority?: any
 	) => any
 	/*********************
-### events.blockPistonRetract()
+	### events.blockPistonRetract()
 
-#### Parameters
+	Called when a piston retracts
 
- * callback - A function which is called whenever the [block.BlockPistonRetractEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockPistonRetractEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockPistonRetractEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockPistonRetractEvent.html) is fired
 
-***/
+	* priority - optional - see events.on() for more information.
+
+	***/
 	export const blockPistonRetract: (
-		callback: (event: any) => boolean | void,
+		callback: (event: BlockPistonRetractEvent) => boolean | void,
 		priority?: any
 	) => any
 	/*********************
-### events.blockPlace()
+	### events.blockPlace()
 
-#### Parameters
+	Called when a block is placed by a player.
+	If a Block Place event is cancelled, the block will not be placed
 
- * callback - A function which is called whenever the [block.BlockPlaceEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockPlaceEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockPlaceEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockPlaceEvent.html) is fired
 
-***/
-	export const blockPlace: (callback: (event: any) => boolean | void, priority?: any) => any
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockPlace: (callback: (event: BlockPlaceEvent) => boolean | void, priority?: any) => any
 	/*********************
-### events.blockRedstone()
+	### events.blockRedstone()
 
-#### Parameters
+	Called when a redstone current changes
 
- * callback - A function which is called whenever the [block.BlockRedstoneEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockRedstoneEvent.html) is fired
+	#### Parameters
 
- * priority - optional - see events.on() for more information.
+	* callback - A function which is called whenever the [block.BlockRedstoneEvent event](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/block/BlockRedstoneEvent.html) is fired
 
-***/
-	export const blockRedstone: (callback: (event: any) => boolean | void, priority?: any) => any
+	* priority - optional - see events.on() for more information.
+
+	***/
+	export const blockRedstone: (callback: (event: BlockRedstoneEvent) => boolean | void, priority?: any) => any
 	/*********************
 ### events.blockSpread()
 

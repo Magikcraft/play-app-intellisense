@@ -35,30 +35,7 @@ interface String {
 
 type TextComponent = any;
 
-interface IMagikCraftAPI {
-    getMappedItem: () => string;
-    setMappedItem: (key: string, value: string) => void;
-    getSpellsList: (sender: BukkitPlayer, senderName: string) => string[];
-}
-
-declare const MagikCraftAPI: IMagikCraftAPI;
-interface ICanon {
-    _darkmagik_: any;
-    console: any;
-    constant: any;
-    displayLocalMsg: (msg: string, ...args: any[]) => void;
-    globalLocale: string;
-    http: any;
-    localiseMsg: (msg: string, ...args: any[]) => string;
-    log: any;
-    magik: any;
-    MSG: any;
-    msg: (msg_id: string) => void;
-    plugin: any;
-    sender: any;
-}
-
-interface BukkitLocation {
+interface Location {
     setX(x: number): void;
     setY(y: number): void;
     setZ(z: number): void;
@@ -71,30 +48,30 @@ interface BukkitLocation {
     getZ(): number;
     getYaw(): number;
     getPitch(): number;
-    getWorld(): BukkitWorld;
-    getBlock(): BukkitBlock;
+    getWorld(): World;
+    getBlock(): Block;
     getDirection(): Vector;
 
-    clone(): BukkitLocation;
+    clone(): Location;
 }
 
 interface Vector {
     multiply(num: number): Vector;
 }
 
-interface BukkitWorld {
-    getBlockAt(location: BukkitLocation): BukkitBlock;
-    getBlockAt(x: number, y: number, z: number): BukkitBlock;
-    strikeLightning(location: BukkitLocation): void;
-    spawnEntity(location: BukkitLocation, entityType: any): void;
-    createExplosion(location: BukkitLocation, times: number): void;
+interface World {
+    getBlockAt(location: Location): Block;
+    getBlockAt(x: number, y: number, z: number): Block;
+    strikeLightning(location: Location): void;
+    spawnEntity(location: Location, entityType: any): void;
+    createExplosion(location: Location, times: number): void;
 }
 
-interface BukkitBlock {
-    location: BukkitLocation;
-    getType(): BukkitBlockType;
-    getRelative(x: number, y: number, z: number): BukkitBlock;
-    setType(newType: BukkitBlockType): void;
+interface Block {
+    location: Location;
+    getType(): BlockType;
+    getRelative(x: number, y: number, z: number): Block;
+    setType(newType: BlockType): void;
     /**
      * Breaks the block and spawns items as if a player had digged it
      * @memberof BukkitBlock
@@ -153,10 +130,10 @@ interface BukkitBlock {
     getDrops(tool: ItemStack): ItemStack[]
     /**
      * Gets the Location of the block
-     * @returns {BukkitLocation}
+     * @returns {Location}
      * @memberof BukkitBlock
      */
-    getLocation(): BukkitLocation
+    getLocation(): Location
     /**
      * Gets the type of this block
      * @returns {BukkitMaterial}
@@ -165,10 +142,10 @@ interface BukkitBlock {
     getType(): BukkitMaterial
     /**
      * Gets the world which contains this Block
-     * @returns {BukkitWorld}
+     * @returns {World}
      * @memberof BukkitBlock
      */
-    getWorld(): BukkitWorld
+    getWorld(): World
     /**
      * Sets the complete data for this block
      * @param {BlockData} data
@@ -184,20 +161,22 @@ type BlockData = any
 type BlockFace = any
 type Chunk = any
 type BlockState = any
+type Entity = any
+type EquipmentSlot = any
 
-interface BukkitBlockType {
+interface BlockType {
     equals(comparison: any): boolean;
 }
 
-interface BukkitPlayer {
+interface Player {
     addPotionEffect(effect: any): void;
     getFoodLevel(): number;
     setFoodLevel(level: number): void;
-    getWorld(): BukkitWorld;
+    getWorld(): World;
     getName(): string;
-    getLocation(): BukkitLocation;
-    getEyeLocation(): BukkitLocation;
-    getLineOfSight(blocks: BukkitMaterial[], maxDistance: number): BukkitBlock[];
+    getLocation(): Location;
+    getEyeLocation(): Location;
+    getLineOfSight(blocks: BukkitMaterial[], maxDistance: number): Block[];
     launchProjectile(projectileType: any): void;
     isSneaking(): boolean;
 }
@@ -210,23 +189,23 @@ type JavaType = any;
 
 interface BossBarAPI {
     addBar(
-        player: BukkitPlayer,
+        player: Player,
         text: TextComponent,
         color: BarsColor,
         stinterfaceyle: BarsStyle,
         progress: number
     ): BossBar;
     getBossBars(): BossBar[];
-    addBarForPlayer(player: BukkitPlayer, bossBar: BossBar): void;
-    removeBarForPlayer(player: BukkitPlayer, bossBar: BossBar): void;
+    addBarForPlayer(player: Player, bossBar: BossBar): void;
+    removeBarForPlayer(player: Player, bossBar: BossBar): void;
 
     Color: BarsColor;
     Style: BarsStyle;
 }
 
 interface BossBar {
-    addPlayer(player: BukkitPlayer): void;
-    removePlayer(player: BukkitPlayer): void;
+    addPlayer(player: Player): void;
+    removePlayer(player: Player): void;
     getColor(): BarsColor;
     setColor(color: BarsColor): void;
     getStyle(): BarsStyle;
@@ -417,7 +396,7 @@ interface magik {
      * }
      * ```
      */
-    aspecto(): BukkitLocation;
+    aspecto(): Location;
 
     /**
      * The caldarium function takes an array of ingredients and returns a secret. Sometimes it's a new function name, sometimes it's a clue.
@@ -447,7 +426,7 @@ interface magik {
      * }
      * ```
      */
-    stella(location: BukkitLocation): void;
+    stella(location: Location): void;
 
     /**
      * Declaro - to manifest (to make clear, to bring into clarity). Manifests an item in Minecraft.
@@ -481,7 +460,7 @@ interface magik {
      * }
      * ```
      */
-    shakti(location?: BukkitLocation): void;
+    shakti(location?: Location): void;
 
     /**
      * Satio feeds you with magik, giving you a full health bar.
@@ -520,7 +499,7 @@ interface magik {
      * On Magikcraft Open Source Platform servers this always returns a reference to the player Bukkit API object.
      *
      */
-    getSender(): BukkitPlayer;
+    getSender(): Player;
 
     /**
      * Dixit prints a message out to the user's Minecraft console. It's useful for debugging.
@@ -644,7 +623,7 @@ interface magik {
      * ```
      *
      */
-    hic(): BukkitLocation;
+    hic(): Location;
 
     /**
      * Toss another player. Iacta gives us "eject" in English.
@@ -687,7 +666,7 @@ interface magik {
      * }
      * ```
      */
-    ianuae(location: BukkitLocation): void;
+    ianuae(location: Location): void;
 
     /**
      * Set another player on fire.
