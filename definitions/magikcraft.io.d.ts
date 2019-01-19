@@ -1,5 +1,12 @@
 declare const require: (moduleName: string) => any;
 
+type logMethod = (message: string, ...args: any) => void
+declare const console: {
+    log: logMethod,
+    error: logMethod,
+    warn: logMethod,
+    info: logMethod
+}
 // Array.from polyfill
 interface ArrayConstructor {
     from<T, U>(arrayLike: ArrayLike<T>, mapfn: (v: T, k: number) => U, thisArg?: any): Array<U>;

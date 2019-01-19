@@ -23,6 +23,11 @@ self.MonacoEnvironment = {
 	}
 }
 
+// Remove default web browser typings
+// https://stackoverflow.com/a/43231372
+monaco.languages.typescript.javascriptDefaults.setCompilerOptions({ noLib: true, allowNonTsExtensions: true });
+monaco.languages.typescript.typescriptDefaults.setCompilerOptions({ noLib: true, allowNonTsExtensions: true });
+
 axios.get('../../definitions').then(res => {
 	Promise.all(
 		window.$('td.display-name', res.data)
@@ -47,7 +52,6 @@ axios.get('../../definitions').then(res => {
 			})
 		)
 	.then(imports => {
-		console.log(imports)
 		monaco.editor.create(document.getElementById('container'), {
 			value: imports.join('\n'),
 			language: 'javascript'
