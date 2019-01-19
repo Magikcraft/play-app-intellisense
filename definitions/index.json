@@ -1,0 +1,21 @@
+[
+    {
+        "file": "events.d.ts",
+        "addImport": "import * as events from 'events'"
+    },
+    {
+        "file": "log.d.ts",
+        "addImport": "import {Logger} from 'magikcraft/log'"
+    },
+    {
+        "file": "globals.d.ts"
+    },
+    {
+        "file": "tools.d.ts",
+        "addImport": "import * as tools from 'magikcraft/tools'"
+    },
+    {
+        "file": "world.d.ts",
+        "addImport": "import {worldly} from 'magikcraft/world'"
+    }
+]

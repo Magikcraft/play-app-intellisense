@@ -28,33 +28,26 @@ self.MonacoEnvironment = {
 monaco.languages.typescript.javascriptDefaults.setCompilerOptions({ noLib: true, allowNonTsExtensions: true });
 monaco.languages.typescript.typescriptDefaults.setCompilerOptions({ noLib: true, allowNonTsExtensions: true });
 
-axios.get('../../definitions').then(res => {
+axios.get('../../definitions/index.json').then(res => {
+	console.log(res.data)
 	Promise.all(
-		window.$('td.display-name', res.data)
-		.map(function () {
-			return this.textContent;
-		})
-		.get()
+		res.data
 		.map(f => {
-			if (!f || !f.indexOf || f.indexOf('.d.ts') == -1) {
-				return Promise.resolve();
-			}
-			return axios.get(`../../definitions/${f}`)
+			const filename = f.file;
+			return axios.get(`../../definitions/${filename}`)
 				.then(res => {
-					const filename = `${f}.d.ts`;
-					console.log(`Adding ${f}...`);
-					const moduleName = f.replace('.d.ts', '');
-					const variable = moduleName;
+					console.log(`Adding ${filename}...`);
 					monaco.languages.typescript.typescriptDefaults.addExtraLib(res.data, filename);
 					monaco.languages.typescript.javascriptDefaults.addExtraLib(res.data, filename);
-					return `import * as ${variable} from '${moduleName}';`;
+					return f.addImport;
 				});
 			})
 		)
 	.then(imports => {
+		const filteredImports = imports.filter(e => e);
 		monaco.editor.create(document.getElementById('container'), {
-			value: imports.join('\n'),
-			language: 'javascript'
+			value: filteredImports.join('\n'),
+			language: 'typescript'
 		});
 	});
 })
